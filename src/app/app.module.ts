@@ -10,13 +10,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
+import { CrewListComponent } from './crew-list/crew-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent,  LanguageSelectorComponent],
+  declarations: [AppComponent,  LanguageSelectorComponent, CrewListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
