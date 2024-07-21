@@ -1,0 +1,13 @@
+{
+  "FIRST_NAME": "Prénom",
+  "LAST_NAME": "Nom",
+  "NATIONALITY": "Nationalité",
+  "TITLE": "Titre",
+  "DAYS_ON_BOARD": "Jours à Bord",
+  "DAILY_RATE": "Taux Quotidien",
+  "CURRENCY": "Monnaie",
+  "TOTAL_INCOME": "Revenu Total",
+  "ADD_CREW": "Ajouter un Équipage",
+  "DELETE": "Supprimer",
+  "EDIT": "Modifier"
+}
