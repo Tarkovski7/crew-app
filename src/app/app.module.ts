@@ -6,6 +6,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -13,11 +16,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, LanguageSelectorComponent],
+  declarations: [AppComponent,  LanguageSelectorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
