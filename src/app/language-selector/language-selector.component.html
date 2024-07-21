@@ -1,0 +1,9 @@
+<p>language-selector works!</p>
+<mat-form-field>
+  <mat-label>{{ 'SELECT_LANGUAGE' | translate }}</mat-label>
+  <mat-select (selectionChange)="changeLanguage($event.value)">
+    <mat-option *ngFor="let lang of languages" [value]="lang">
+      {{ lang }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
