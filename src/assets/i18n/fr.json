@@ -1,4 +1,6 @@
 {
+  "CARD": "Carte",
+  "ID": "Id",
   "FIRST_NAME": "Prénom",
   "LAST_NAME": "Nom",
   "NATIONALITY": "Nationalité",
