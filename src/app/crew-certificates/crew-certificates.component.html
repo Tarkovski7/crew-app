@@ -1,0 +1,9 @@
+<p>crew-certificates works!</p>
+<div>
+  <h3>{{ 'CERTIFICATES' | translate }}</h3>
+  <ul>
+    <li *ngFor="let certificate of certificates">
+      {{ certificate.name }} - {{ certificate.issueDate| date }}
+    </li>
+  </ul>
+</div>

@@ -17,6 +17,11 @@ import { HomeComponent } from './home/home.component';
 import { CrewListComponent } from './crew-list/crew-list.component';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CrewEditComponent } from './crew-edit/crew-edit.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CrewCertificatesComponent } from './crew-certificates/crew-certificates.component';
+import { CrewCardComponent } from './crew-card/crew-card.component';
+import { CrewService } from './crew.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,6 +33,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CrewListComponent,
     HomeComponent,
     LanguageSelectorComponent,
+    CrewEditComponent,
+    CrewCertificatesComponent,
+    CrewCardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +50,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
-  providers: [provideHttpClient(withFetch())],
+  providers: [provideHttpClient(withFetch()) , CrewService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
