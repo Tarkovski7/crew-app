@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Crew, Currency } from './models/crew';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -63,9 +63,19 @@ export class CrewService {
       []
     ),
   ];
+  private crewSubject = new BehaviorSubject<Crew[]>(this.crewData);
+  crew$ = this.crewSubject.asObservable();
   constructor() {}
   getCrewById(id: number): Observable<Crew> {
     const crew = this.crewData.find((c) => c.id === id);
     return of(crew!);
+  }
+  updateCrew(updatedCrew: Crew): Observable<void> {
+    const index = this.crewData.findIndex(c => c.id === updatedCrew.id);
+    if (index !== -1) {
+      this.crewData[index] = updatedCrew;
+      this.crewSubject.next(this.crewData);
+    }
+    return of(undefined); // Gerçek uygulamada bir API çağrısı olabilir
   }
 }

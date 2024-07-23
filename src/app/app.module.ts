@@ -22,6 +22,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CrewCertificatesComponent } from './crew-certificates/crew-certificates.component';
 import { CrewCardComponent } from './crew-card/crew-card.component';
 import { CrewService } from './crew.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -50,6 +53,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTableModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatDialogModule
   ],
