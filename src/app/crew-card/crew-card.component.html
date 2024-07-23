@@ -1,9 +1,51 @@
-<p>crew-card works!</p>
-<h2>{{ crew.firstName }} {{ crew.lastName }}</h2>
-<p>Nationality: {{ crew.nationality }}</p>
-<p>Title: {{ crew.title }}</p>
-<p>Days On Board: {{ crew.daysOnBoard }}</p>
-<p>Daily Rate: {{ crew.dailyRate }}</p>
-<p>Currency: {{ crew.currency }}</p>
-<p>Total Income: {{ crew.dailyRate * crew.daysOnBoard }}</p>
-<!-- Sertifikaları da burada listeleyebilirsiniz. -->
+<div *ngIf="crew">
+  <h2>{{ 'CREW_DETAILS' | translate }}</h2>
+  <table>
+    <tr>
+      <td>{{ 'FIRST_NAME' | translate }}:</td>
+      <td>{{ crew.firstName }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'LAST_NAME' | translate }}:</td>
+      <td>{{ crew.lastName }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'NATIONALITY' | translate }}:</td>
+      <td>{{ crew.nationality }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'TITLE' | translate }}:</td>
+      <td>{{ crew.title }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'DAYS_ON_BOARD' | translate }}:</td>
+      <td>{{ crew.daysOnBoard }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'DAILY_RATE' | translate }}:</td>
+      <td>{{ crew.dailyRate | number:'1.2-2' }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'CURRENCY' | translate }}:</td>
+      <td>{{ crew.currency }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'TOTAL_INCOME' | translate }}:</td>
+      <td>{{ (crew.dailyRate * crew.daysOnBoard) | number:'1.2-2' }}</td>
+    </tr>
+  </table>
+
+  <h3>{{ 'CERTIFICATES' | translate }}</h3>
+  <table>
+    <tr>
+      <th>{{ 'CERTIFICATE_NAME' | translate }}</th>
+      <th>{{ 'ISSUED_DATE' | translate }}</th>
+    </tr>
+    <tr *ngFor="let certificate of crew.certificates">
+      <td>{{ certificate.name }}</td>
+      <td>{{ certificate.issueDate | date }}</td>
+    </tr>
+  </table>
+
+  <button (click)="goBack()">{{ 'BACK' | translate }}</button>
+</div>

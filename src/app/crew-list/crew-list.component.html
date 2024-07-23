@@ -80,3 +80,15 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<div *ngIf="totalIncomeCurrency">
+  <h3>{{ 'TOTAL_INCOME_BY_CURRENCY' | translate }}</h3>
+  <table>
+    <ng-container *ngFor="let currency of [currencies.USD, currencies.EUR]">
+      <tr *ngIf="totalIncomeCurrency[currency] !== undefined">
+        <td>{{ currency }}:</td>
+        <td>{{ totalIncomeCurrency[currency] | number:'1.2-2' }}</td>
+      </tr>
+    </ng-container>
+  </table>
+</div>
