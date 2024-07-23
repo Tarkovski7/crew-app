@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Crew, Currency } from '../models/crew';
 import { CrewEditComponent } from '../crew-edit/crew-edit.component';
-import { Subscription } from 'rxjs';
 import { CrewService } from '../crew.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { CrewService } from '../crew.service';
   templateUrl: './crew-list.component.html',
   styleUrls: ['./crew-list.component.scss'],
 })
-export class CrewListComponent implements OnInit, OnDestroy {
+export class CrewListComponent implements OnInit {
   displayedColumns: string[] = [
     'card',
     'id',
@@ -26,22 +25,42 @@ export class CrewListComponent implements OnInit, OnDestroy {
     'actions',
   ];
   dataSource: Crew[] = [];
-  private subscription = new Subscription();
+  totalIncomeCurrency: Record<Currency, number> = {
+    [Currency.USD]: 0,
+    [Currency.EUR]: 0
+  };
+  currencies = Currency;
 
-  constructor(public dialog: MatDialog, private translate: TranslateService , private crewService: CrewService) {}
+  constructor(
+    public dialog: MatDialog,
+    private crewService: CrewService
+  ) {}
+
   ngOnInit() {
-    this.subscription.add(
-      this.crewService.crew$.subscribe(data => {
-        this.dataSource = data;
-      })
-    );
+    this.loadCrewData();
   }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+
+  loadCrewData() {
+    this.crewService.getCrew().subscribe((data) => {
+      this.dataSource = data;
+      this.calculateTotalIncomeByCurrency();
+    });
+  }
+
+  calculateTotalIncomeByCurrency() {
+    this.totalIncomeCurrency = this.dataSource.reduce((acc, crew) => {
+      const totalIncome = crew.dailyRate * crew.daysOnBoard;
+      acc[crew.currency] += totalIncome;
+      return acc;
+    }, {
+      [Currency.USD]: 0,
+      [Currency.EUR]: 0
+    } as Record<Currency, number>);
   }
 
   deleteCrew(crew: Crew) {
     this.dataSource = this.dataSource.filter((c) => c !== crew);
+    this.calculateTotalIncomeByCurrency();
   }
 
   openEditDialog(crew: Crew) {
@@ -51,21 +70,13 @@ export class CrewListComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((updatedCrew: Crew) => {
       if (updatedCrew) {
-        const index = this.dataSource.findIndex(c => c.id === updatedCrew.id);
+        const index = this.dataSource.findIndex((c) => c.id === updatedCrew.id);
         if (index !== -1) {
-          // Güncellenmiş crew'ü listeye yansıt
           this.dataSource[index] = updatedCrew;
-          // Listeyi güncellemek için Angular'ın değişiklik algılama mekanizmasını kullan
-          this.dataSource = [...this.dataSource];
+          this.calculateTotalIncomeByCurrency();
         }
+        this.loadCrewData();
       }
     });
-  }
-  updateCrew(updatedCrew: Crew) {
-    const index = this.dataSource.findIndex((c) => c.id === updatedCrew.id);
-    if (index !== -1) {
-      this.dataSource[index] = updatedCrew;
-    }
-
   }
 }

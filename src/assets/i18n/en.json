@@ -1,6 +1,7 @@
 {
   "CARD": "Card",
   "ID": "Id",
+  "CREW_DETAILS": "Crew Details",
   "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
   "NATIONALITY": "Nationality",
@@ -9,7 +10,16 @@
   "DAILY_RATE": "Daily Rate",
   "CURRENCY": "Currency",
   "TOTAL_INCOME": "Total Income",
+  "TOTAL_INCOME_BY_CURRENCY": "Total Income by Currency",
   "ADD_CREW": "Add Crew",
   "DELETE": "Delete",
-  "EDIT": "Edit"
+  "EDIT": "Edit",
+  "CERTIFICATES": "Certificates",
+  "CERTIFICATE_NAME": "Certificate Name",
+  "ISSUED_DATE": "Issued Date",
+  "VIEW_CARD": "View Card",
+  "ACTIONS": "Actions",
+  "BACK": "Back"
 }
+
+

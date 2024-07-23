@@ -1,15 +1,23 @@
 {
   "CARD": "Cartão",
-  "ID": "Id",
-  "FIRST_NAME": "Primeiro Nome",
-  "LAST_NAME": "Último Nome",
+  "ID": "ID",
+  "CREW_DETAILS": "Detalhes da Tripulação",
+  "FIRST_NAME": "Nome",
+  "LAST_NAME": "Sobrenome",
   "NATIONALITY": "Nacionalidade",
   "TITLE": "Título",
   "DAYS_ON_BOARD": "Dias a Bordo",
   "DAILY_RATE": "Taxa Diária",
   "CURRENCY": "Moeda",
   "TOTAL_INCOME": "Renda Total",
+  "TOTAL_INCOME_BY_CURRENCY": "Renda Total por Moeda",
   "ADD_CREW": "Adicionar Tripulação",
   "DELETE": "Excluir",
-  "EDIT": "Editar"
+  "EDIT": "Editar",
+  "CERTIFICATES": "Certificados",
+  "CERTIFICATE_NAME": "Nome do Certificado",
+  "ISSUED_DATE": "Data de Emissão",
+  "VIEW_CARD": "Ver Cartão",
+  "ACTIONS": "Ações",
+  "BACK": "Voltar"
 }
