@@ -2,6 +2,7 @@
   "CARD": "Card",
   "ID": "Id",
   "CREW_DETAILS": "Crew Details",
+  "CREW_LIST" : "Crew List",
   "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
   "NATIONALITY": "Nationality",
@@ -19,7 +20,17 @@
   "ISSUED_DATE": "Issued Date",
   "VIEW_CARD": "View Card",
   "ACTIONS": "Actions",
-  "BACK": "Back"
+  "BACK": "Back",
+  "FIRST_NAME_REQUIRED": "First Name is required.",
+  "LAST_NAME_REQUIRED": "Last Name is required.",
+  "NATIONALITY_REQUIRED": "Nationality is required.",
+  "TITLE_REQUIRED": "Title is required.",
+  "DAYS_ON_BOARD_REQUIRED": "Days On Board is required.",
+  "DAILY_RATE_REQUIRED": "Daily Rate is required.",
+  "CURRENCY_REQUIRED": "Currency is required.",
+  "CANCEL": "Cancel",
+  "SAVE": "Save"
+
 }
 
 
