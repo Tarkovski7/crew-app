@@ -19,5 +19,14 @@
   "ISSUED_DATE": "Data de Emissão",
   "VIEW_CARD": "Ver Cartão",
   "ACTIONS": "Ações",
-  "BACK": "Voltar"
+  "BACK": "Voltar",
+  "FIRST_NAME_REQUIRED": "O primeiro nome é obrigatório.",
+  "LAST_NAME_REQUIRED": "O sobrenome é obrigatório.",
+  "NATIONALITY_REQUIRED": "A nacionalidade é obrigatória.",
+  "TITLE_REQUIRED": "O título é obrigatório.",
+  "DAYS_ON_BOARD_REQUIRED": "Os dias a bordo são obrigatórios.",
+  "DAILY_RATE_REQUIRED": "A taxa diária é obrigatória.",
+  "CURRENCY_REQUIRED": "A moeda é obrigatória.",
+  "CANCEL": "Cancelar",
+  "SAVE": "Salvar"
 }

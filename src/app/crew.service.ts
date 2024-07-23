@@ -97,7 +97,6 @@ export class CrewService {
   updateCrew(updatedCrew: Crew): Observable<void> {
     const index = this.crewData.findIndex((c) => c.id === updatedCrew.id);
     if (index !== -1) {
-      // Kopya oluşturup güncellenmiş crew verisini koyuyoruz
       this.crewData = [
         ...this.crewData.slice(0, index),
         updatedCrew,
@@ -105,6 +104,17 @@ export class CrewService {
       ];
       this.crewSubject.next(this.crewData);
     }
+    return of(undefined);
+  }
+  addCrew(newCrew: Crew): Observable<void> {
+    newCrew.id = Math.max(...this.crewData.map(c => c.id) , 0) + 1;
+    this.crewData.push(newCrew);
+    this.crewSubject.next(this.crewData);
+    return of(undefined);
+  }
+  deleteCrew(id: number): Observable<void> {
+    this.crewData = this.crewData.filter(c => c.id !== id);
+    this.crewSubject.next(this.crewData);
     return of(undefined);
   }
 

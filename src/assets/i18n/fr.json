@@ -19,5 +19,14 @@
   "ISSUED_DATE": "Date de délivrance",
   "VIEW_CARD": "Voir la carte",
   "ACTIONS": "Actions",
-  "BACK": "Retour"
+  "BACK": "Retour",
+  "FIRST_NAME_REQUIRED": "Le prénom est requis.",
+  "LAST_NAME_REQUIRED": "Le nom de famille est requis.",
+  "NATIONALITY_REQUIRED": "La nationalité est requise.",
+  "TITLE_REQUIRED": "Le titre est requis.",
+  "DAYS_ON_BOARD_REQUIRED": "Les jours à bord sont requis.",
+  "DAILY_RATE_REQUIRED": "Le taux journalier est requis.",
+  "CURRENCY_REQUIRED": "La devise est requise.",
+  "CANCEL": "Annuler",
+  "SAVE": "Sauvegarder"
 }

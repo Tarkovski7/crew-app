@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Crew, Currency } from '../models/crew';
 import { CrewEditComponent } from '../crew-edit/crew-edit.component';
 import { CrewService } from '../crew.service';
+import { CrewAddComponent } from '../crew-add/crew-add.component';
 
 @Component({
   selector: 'app-crew-list',
@@ -59,8 +60,10 @@ export class CrewListComponent implements OnInit {
   }
 
   deleteCrew(crew: Crew) {
-    this.dataSource = this.dataSource.filter((c) => c !== crew);
-    this.calculateTotalIncomeByCurrency();
+    this.crewService.deleteCrew(crew.id).subscribe(() => {
+      this.dataSource = this.dataSource.filter((c) => c.id !== crew.id);
+      this.calculateTotalIncomeByCurrency();
+    });
   }
 
   openEditDialog(crew: Crew) {
@@ -75,6 +78,15 @@ export class CrewListComponent implements OnInit {
           this.dataSource[index] = updatedCrew;
           this.calculateTotalIncomeByCurrency();
         }
+        this.loadCrewData();
+      }
+    });
+  }
+  openAddDialog() {
+    const dialogRef = this.dialog.open(CrewAddComponent);
+
+    dialogRef.afterClosed().subscribe((success) => {
+      if (success) {
         this.loadCrewData();
       }
     });

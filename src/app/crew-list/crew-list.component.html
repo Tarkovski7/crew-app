@@ -1,4 +1,7 @@
-<h1>Crew List</h1>
+<h2>{{ 'CREW_LIST' | translate }}</h2>
+<button mat-raised-button color="primary" (click)="openAddDialog()">
+  {{ 'ADD_CREW' | translate }}
+</button>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!-- Link to Crew Card Page Column -->
   <ng-container matColumnDef="card">
