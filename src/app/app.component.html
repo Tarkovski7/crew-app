@@ -1,3 +1,9 @@
+<div class="language-selector">
+  <button (click)="switchLanguage('en')">English</button>
+  <button (click)="switchLanguage('fr')">Français</button>
+  <button (click)="switchLanguage('pt')">Português</button>
+</div>
 <div>
   <app-language-selector></app-language-selector>
+  <router-outlet></router-outlet>
 </div>
