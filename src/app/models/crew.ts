@@ -1,4 +1,4 @@
-import { Certificate } from "./certificate";
+import { Certificate } from './certificate';
 
 export class Crew {
   id: number;
@@ -9,6 +9,7 @@ export class Crew {
   daysOnBoard: number;
   dailyRate: number;
   currency: Currency;
+  discount?: number;
   certificates: Certificate[];
 
   constructor(
@@ -20,7 +21,8 @@ export class Crew {
     daysOnBoard: number,
     dailyRate: number,
     currency: Currency,
-    certificates: Certificate[]
+    certificates: Certificate[],
+    discount?: number
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -31,10 +33,11 @@ export class Crew {
     this.dailyRate = dailyRate;
     this.currency = currency;
     this.certificates = certificates;
+    this.discount = discount;
   }
 }
 
 export enum Currency {
   USD = 'USD',
-  EUR = 'EUR'
+  EUR = 'EUR',
 }

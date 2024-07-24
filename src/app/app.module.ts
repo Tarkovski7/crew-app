@@ -23,7 +23,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CrewCertificatesComponent } from './crew-certificates/crew-certificates.component';
 import { CrewCardComponent } from './crew-card/crew-card.component';
 import { CrewService } from './crew.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CrewAddComponent } from './crew-add/crew-add.component';
@@ -63,7 +63,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSelectModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [provideHttpClient(withFetch()) , CrewService],
   bootstrap: [AppComponent],
