@@ -74,6 +74,38 @@
         </mat-error>
       </mat-form-field>
     </div>
+
+    <div class="form-field">
+      <button mat-raised-button color="accent" type="button" (click)="openCertificateSelectionDialog()">
+        {{ 'SELECT_CERTIFICATES' | translate }}
+      </button>
+    </div>
+
+    <div formArrayName="certificates" class="form-field">
+      <div *ngFor="let certificate of certificates.controls; let i = index" [formGroupName]="i" class="certificate-field">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'CERTIFICATE_NAME' | translate }}</mat-label>
+          <input matInput formControlName="name" readonly="true"/>
+          <mat-error *ngIf="certificate.get('name')?.hasError('required')">
+            {{ 'CERTIFICATE_NAME_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'ISSUE_DATE' | translate }}</mat-label>
+          <input matInput formControlName="issueDate" type="date" />
+          <mat-error *ngIf="certificate.get('issueDate')?.hasError('required')">
+            {{ 'ISSUE_DATE_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'EXPIRY_DATE' | translate }}</mat-label>
+          <input matInput formControlName="expiryDate" type="date" />
+        </mat-form-field>
+        <button mat-icon-button color="warn" (click)="removeCertificate(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
   </mat-dialog-content>
 
   <mat-dialog-actions>

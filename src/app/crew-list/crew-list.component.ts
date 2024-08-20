@@ -5,6 +5,7 @@ import { Crew, Currency } from '../models/crew';
 import { CrewEditComponent } from '../crew-edit/crew-edit.component';
 import { CrewService } from '../crew.service';
 import { CrewAddComponent } from '../crew-add/crew-add.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-crew-list',
@@ -26,7 +27,7 @@ export class CrewListComponent implements OnInit {
     'totalIncome',
     'actions',
   ];
-  dataSource: Crew[] = [];
+  dataSource: MatTableDataSource<Crew> = new MatTableDataSource<Crew>([]);
   totalIncomeCurrency: Record<Currency, number> = {
     [Currency.USD]: 0,
     [Currency.EUR]: 0,
@@ -41,14 +42,14 @@ export class CrewListComponent implements OnInit {
 
   loadCrewData() {
     this.crewService.getCrew().subscribe((data) => {
-      this.dataSource = data;
+      this.dataSource = new MatTableDataSource(data);
       this.calculateTotalIncomeByCurrency();
     });
   }
 
   calculateTotalIncomeByCurrency() {
-    this.totalIncomeCurrency = this.dataSource.reduce(
-      (acc, crew) => {
+    this.totalIncomeCurrency = this.dataSource.data.reduce(
+      (acc : Record<Currency, number>, crew : Crew) => {
         // Yüzdelik indirim hesaplaması
         const discountAmount = (crew.dailyRate * crew.daysOnBoard) * (crew.discount || 0) / 100;
         const totalIncome = (crew.dailyRate * crew.daysOnBoard) - discountAmount;
@@ -69,21 +70,22 @@ export class CrewListComponent implements OnInit {
 
   deleteCrew(crew: Crew) {
     this.crewService.deleteCrew(crew.id).subscribe(() => {
-      this.dataSource = this.dataSource.filter((c) => c.id !== crew.id);
+      this.dataSource.data = this.dataSource.data.filter((c) => c.id !== crew.id);
       this.calculateTotalIncomeByCurrency();
     });
   }
 
   openEditDialog(crew: Crew) {
     const dialogRef = this.dialog.open(CrewEditComponent, {
-      data: { crew: crew },
+      data: { id : crew.id },
     });
 
     dialogRef.afterClosed().subscribe((updatedCrew: Crew) => {
       if (updatedCrew) {
-        const index = this.dataSource.findIndex((c) => c.id === updatedCrew.id);
+        const index = this.dataSource.data.findIndex((c) => c.id === updatedCrew.id);
         if (index !== -1) {
-          this.dataSource[index] = updatedCrew;
+          this.dataSource.data[index] = updatedCrew;
+          this.dataSource = new MatTableDataSource(this.dataSource.data);
           this.calculateTotalIncomeByCurrency();
         }
         this.loadCrewData();
