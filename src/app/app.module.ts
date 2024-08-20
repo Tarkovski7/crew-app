@@ -28,6 +28,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CrewAddComponent } from './crew-add/crew-add.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule } from '@angular/material/list';
+import { CertificateSelectionDialogComponent } from './certificate-selection-dialog/certificate-selection-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card'; 
+
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CrewEditComponent,
     CrewCertificatesComponent,
     CrewCardComponent,
-    CrewAddComponent
+    CrewAddComponent,
+    CertificateSelectionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +71,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     AppRoutingModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatCardModule
   ],
   providers: [provideHttpClient(withFetch()) , CrewService],
   bootstrap: [AppComponent],

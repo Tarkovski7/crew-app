@@ -1,51 +1,57 @@
 <div *ngIf="crew">
-  <h2>{{ 'CREW_DETAILS' | translate }}</h2>
-  <table>
-    <tr>
-      <td>{{ 'FIRST_NAME' | translate }}:</td>
-      <td>{{ crew.firstName }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'LAST_NAME' | translate }}:</td>
-      <td>{{ crew.lastName }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'NATIONALITY' | translate }}:</td>
-      <td>{{ crew.nationality }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'TITLE' | translate }}:</td>
-      <td>{{ crew.title }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'DAYS_ON_BOARD' | translate }}:</td>
-      <td>{{ crew.daysOnBoard }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'DAILY_RATE' | translate }}:</td>
-      <td>{{ crew.dailyRate | number:'1.2-2' }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'CURRENCY' | translate }}:</td>
-      <td>{{ crew.currency }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'TOTAL_INCOME' | translate }}:</td>
-      <td>{{ (crew.dailyRate * crew.daysOnBoard) | number:'1.2-2' }}</td>
-    </tr>
-  </table>
+  <mat-card class="crew-details-card">
+    <mat-card-header>
+      <mat-card-title>{{ "CREW_DETAILS" | translate }}</mat-card-title>
+    </mat-card-header>
 
-  <h3>{{ 'CERTIFICATES' | translate }}</h3>
-  <table>
-    <tr>
-      <th>{{ 'CERTIFICATE_NAME' | translate }}</th>
-      <th>{{ 'ISSUED_DATE' | translate }}</th>
-    </tr>
-    <tr *ngFor="let certificate of crew.certificates">
-      <td>{{ certificate.name }}</td>
-      <td>{{ certificate.issueDate | date }}</td>
-    </tr>
-  </table>
-
-  <button (click)="goBack()">{{ 'BACK' | translate }}</button>
+    <mat-card-content>
+      <div class="crew-info">
+        <div>
+          <strong>{{ "FIRST_NAME" | translate }}:</strong>
+          <span>{{ crew.firstName }}</span>
+        </div>
+        <div>
+          <strong>{{ "LAST_NAME" | translate }}:</strong>
+          <span>{{ crew.lastName }}</span>
+        </div>
+        <div>
+          <strong>{{ "NATIONALITY" | translate }}:</strong>
+          <span>{{ crew.nationality }}</span>
+        </div>
+        <div>
+          <strong>{{ "TITLE" | translate }}:</strong>
+          <span>{{ crew.title }}</span>
+        </div>
+        <div>
+          <strong>{{ "DAYS_ON_BOARD" | translate }}:</strong>
+          <span>{{ crew.daysOnBoard }}</span>
+        </div>
+        <div>
+          <strong>{{ "DAILY_RATE" | translate }}:</strong>
+          <span>{{ crew.dailyRate | number : "1.2-2" }}</span>
+        </div>
+        <div>
+          <strong>{{ "CURRENCY" | translate }}:</strong>
+          <span>{{ crew.currency }}</span>
+        </div>
+        <div>
+          <strong>{{ "TOTAL_INCOME" | translate }}:</strong>
+          <span>{{
+            crew.dailyRate * crew.daysOnBoard | number : "1.2-2"
+          }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="crew-certificates">
+        <h3>{{ "CERTIFICATES" | translate }}</h3>
+        <app-crew-certificates
+          [certificates]="crew.certificates"
+        ></app-crew-certificates>
+      </div>
+    </mat-card-actions>
+    <button mat-raised-button color="warn" (click)="goBack()">
+      {{ "BACK" | translate }}
+    </button>
+  </mat-card>
 </div>

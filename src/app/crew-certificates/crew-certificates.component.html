@@ -1,9 +1,21 @@
-<p>crew-certificates works!</p>
-<div>
-  <h3>{{ 'CERTIFICATES' | translate }}</h3>
-  <ul>
-    <li *ngFor="let certificate of certificates">
-      {{ certificate.name }} - {{ certificate.issueDate| date }}
-    </li>
-  </ul>
+<div class="certificate-container" *ngIf="certificates.length > 0; else noCertificates">
+  <mat-card *ngFor="let certificate of certificates" class="certificate-card">
+    <mat-card-header>
+      <mat-card-title>{{ certificate.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <strong>{{ 'ISSUE_DATE' | translate }}: </strong>{{ certificate.issueDate | date:'shortDate' }}
+      </p>
+      <p *ngIf="certificate.expiryDate">
+        <strong>{{ 'EXPIRY_DATE' | translate }}: </strong>{{ certificate.expiryDate | date:'shortDate' }}
+      </p>
+    </mat-card-content>
+  </mat-card>
 </div>
+
+<ng-template #noCertificates>
+  <mat-card>
+    <mat-card-content>{{ 'NO_CERTIFICATES' | translate }}</mat-card-content>
+  </mat-card>
+</ng-template>

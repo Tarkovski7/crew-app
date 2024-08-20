@@ -1,83 +1,117 @@
-<h2 mat-dialog-title>{{ 'ADD_CREW' | translate }}</h2>
+<h2 mat-dialog-title>{{ "ADD_CREW" | translate }}</h2>
 <form [formGroup]="crewForm" (ngSubmit)="onSave()">
   <mat-dialog-content>
     <div class="form-field">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ 'FIRST_NAME' | translate }}</mat-label>
+        <mat-label>{{ "FIRST_NAME" | translate }}</mat-label>
         <input matInput formControlName="firstName" />
         <mat-error *ngIf="crewForm.get('firstName')?.hasError('required')">
-          {{ 'FIRST_NAME_REQUIRED' | translate }}
+          {{ "FIRST_NAME_REQUIRED" | translate }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-field">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ 'LAST_NAME' | translate }}</mat-label>
+        <mat-label>{{ "LAST_NAME" | translate }}</mat-label>
         <input matInput formControlName="lastName" />
         <mat-error *ngIf="crewForm.get('lastName')?.hasError('required')">
-          {{ 'LAST_NAME_REQUIRED' | translate }}
+          {{ "LAST_NAME_REQUIRED" | translate }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-field">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ 'NATIONALITY' | translate }}</mat-label>
+        <mat-label>{{ "NATIONALITY" | translate }}</mat-label>
         <input matInput formControlName="nationality" />
         <mat-error *ngIf="crewForm.get('nationality')?.hasError('required')">
-          {{ 'NATIONALITY_REQUIRED' | translate }}
+          {{ "NATIONALITY_REQUIRED" | translate }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-field">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ 'TITLE' | translate }}</mat-label>
+        <mat-label>{{ "TITLE" | translate }}</mat-label>
         <input matInput formControlName="title" />
         <mat-error *ngIf="crewForm.get('title')?.hasError('required')">
-          {{ 'TITLE_REQUIRED' | translate }}
+          {{ "TITLE_REQUIRED" | translate }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-field">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ 'DAYS_ON_BOARD' | translate }}</mat-label>
+        <mat-label>{{ "DAYS_ON_BOARD" | translate }}</mat-label>
         <input matInput formControlName="daysOnBoard" type="number" />
         <mat-error *ngIf="crewForm.get('daysOnBoard')?.hasError('required')">
-          {{ 'DAYS_ON_BOARD_REQUIRED' | translate }}
+          {{ "DAYS_ON_BOARD_REQUIRED" | translate }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-field">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ 'DAILY_RATE' | translate }}</mat-label>
+        <mat-label>{{ "DAILY_RATE" | translate }}</mat-label>
         <input matInput formControlName="dailyRate" type="number" />
         <mat-error *ngIf="crewForm.get('dailyRate')?.hasError('required')">
-          {{ 'DAILY_RATE_REQUIRED' | translate }}
+          {{ "DAILY_RATE_REQUIRED" | translate }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-field">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ 'CURRENCY' | translate }}</mat-label>
+        <mat-label>{{ "CURRENCY" | translate }}</mat-label>
         <mat-select formControlName="currency">
           <mat-option *ngFor="let currency of currencies" [value]="currency">
             {{ currency }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="crewForm.get('currency')?.hasError('required')">
-          {{ 'CURRENCY_REQUIRED' | translate }}
+          {{ "CURRENCY_REQUIRED" | translate }}
         </mat-error>
       </mat-form-field>
     </div>
+
+    <div class="form-field">
+      <button
+        mat-raised-button
+        color="accent"
+        type="button"
+        (click)="openCertificateSelectionDialog()"
+      >
+        {{ "SELECT_CERTIFICATES" | translate }}
+      </button>
+    </div>
+
+    <!-- <div formArrayName="certificates">
+      <div *ngFor="let certificate of certificates.controls; let i = index" [formGroupName]="i">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'CERTIFICATE_NAME' | translate }}</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'ISSUE_DATE' | translate }}</mat-label>
+          <input matInput formControlName="issueDate" type="date" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'EXPIRY_DATE' | translate }}</mat-label>
+          <input matInput formControlName="expiryDate" type="date" />
+        </mat-form-field>
+        <button mat-icon-button color="warn" (click)="removeCertificate(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div> -->
+
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button mat-button (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
-    <button mat-raised-button color="primary" type="submit">{{ 'SAVE' | translate }}</button>
+    <button mat-button (click)="onCancel()">{{ "CANCEL" | translate }}</button>
+    <button mat-raised-button color="primary" type="submit">
+      {{ "SAVE" | translate }}
+    </button>
   </mat-dialog-actions>
 </form>

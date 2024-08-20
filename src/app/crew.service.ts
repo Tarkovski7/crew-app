@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Crew, Currency } from './models/crew';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, throwError } from 'rxjs';
 import { Certificate } from './models/certificate';
 
 @Injectable({
@@ -88,34 +88,34 @@ export class CrewService {
   crew$ = this.crewSubject.asObservable();
   constructor() {}
   getCrew(): Observable<Crew[]> {
-    return of(this.crewData);
+    return of(this.crewData).pipe(
+      catchError(error => throwError(() => new Error('Error fetching crew data')))
+    );
   }
   getCrewById(id: number): Observable<Crew> {
-    const crew = this.crewData.find((c) => c.id === id);
-    return of(crew!);
+    const crew = this.crewData.find(c => c.id === id);
+    if (!crew) {
+      return throwError(() => new Error('Crew not found'));
+    }
+    return of(crew);
   }
   updateCrew(updatedCrew: Crew): Observable<void> {
-    const index = this.crewData.findIndex((c) => c.id === updatedCrew.id);
+    const index = this.crewData.findIndex(c => c.id === updatedCrew.id);
     if (index !== -1) {
-      this.crewData = [
-        ...this.crewData.slice(0, index),
-        updatedCrew,
-        ...this.crewData.slice(index + 1),
-      ];
-      this.crewSubject.next(this.crewData);
+      this.crewData.splice(index, 1, updatedCrew);
+      this.crewSubject.next([...this.crewData]);
     }
     return of(undefined);
   }
   addCrew(newCrew: Crew): Observable<void> {
-    newCrew.id = Math.max(...this.crewData.map(c => c.id) , 0) + 1;
+    newCrew.id = Math.max(...this.crewData.map(c => c.id), 0) + 1;
     this.crewData.push(newCrew);
-    this.crewSubject.next(this.crewData);
+    this.crewSubject.next([...this.crewData]);
     return of(undefined);
   }
   deleteCrew(id: number): Observable<void> {
-    this.crewData = this.crewData.filter(c => c.id !== id);
+    this.crewData = this.crewData.filter((c) => c.id !== id);
     this.crewSubject.next(this.crewData);
     return of(undefined);
   }
-
 }

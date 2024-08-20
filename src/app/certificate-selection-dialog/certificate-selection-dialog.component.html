@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ "SELECT_CERTIFICATES" | translate }}</h2>
+<mat-dialog-content>
+  <mat-list>
+    <mat-list-item *ngFor="let certificate of certificates">
+      <mat-checkbox
+        [checked]="isSelected(certificate)"
+        (change)="onSelectCertificate(certificate)"
+      >
+        {{ certificate.name }}
+      </mat-checkbox>
+    </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{ "CANCEL" | translate }}</button>
+  <button mat-raised-button color="primary" (click)="onSave()">
+    {{ "SAVE" | translate }}
+  </button>
+</mat-dialog-actions>

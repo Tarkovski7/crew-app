@@ -9,7 +9,7 @@ import { CrewService } from '../crew.service';
   styleUrl: './crew-card.component.scss',
 })
 export class CrewCardComponent implements OnInit {
-  crew?: Crew;
+   crew?: Crew;
   constructor(
     private route: ActivatedRoute,
     private crewService: CrewService,
